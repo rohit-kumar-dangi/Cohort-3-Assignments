@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(255, 255, 255, 0.93);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container{
+    height: 93%;
+    width: 97%;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+#left-section{
+    background-color: #fbc60b;
+    height: 100%;
+    width: 60%;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between ;
+}
+#left-top{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+#picachu-logo{
+    height:50%;
+    margin-left: 5%;
+}
+
+#left-center{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between ;
+    padding-left: 9%;
+    
+}
+#subtitle {
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#title {
+    font-size: 110px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#description {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 520px;
+}
+
+#counter {
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+#line{
+    height: 2px;
+    width: 40px;
+    background-color: black;
+    margin-right: 20px;
+}
+
+#left-bottom{
+    width: 100%;
+    height: 20%;
+}
+#picachu_ball{
+    height: 100%;
+    margin-left: 6%;
+}
+
+#pikachu {
+    position: absolute;
+    height: 80%;
+    left: 63%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#right-section{
+    background-color: #fbe8b5;
+    height: 100%;
+    width: 40%;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: relative;
+}
+#right-top{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+#menu{
+    height:30%;
+    margin-right: 10%;
+}
+#slider-dots {
+    position: absolute;
+    right: 4%;
+    top: 55%;
+    transform: translateY(-50%);
+    
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e7b400;
+}
+.dot.active {
+    background-color: #000;
+}
+
+
