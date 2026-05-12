@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 98vw;
+    height: calc(98vw * 5 / 6);
+    background-color: #f0f0f0;
+    font-family: 'General Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+.light{
+    color: #ad9899;
+}
+#top-section{
+    margin-top: 6%;
+    width: 100%;
+    height: 31.25%;
+    display: flex;
+
+}
+#top-left{
+    height: 100%;
+    width: 20%;
+}
+#star{
+    width: 20%;
+    margin-left: 35px;
+}
+#top-center{
+    height: 100%;
+    width: 60%;
+}
+#part1{
+    width: 100%;
+    height: 35%;
+    font-size: 70px;
+    color: #581216;
+    line-height: 1;
+}
+#girl-image{
+    height: 40%;
+}
+#part2{
+    width: 100%;
+    height: 65%;
+    margin-left: 270px;
+    line-height: 1;
+}
+#line1{
+    color: #ad9899;
+    width: 100%;
+    height: 30%;
+    font-size: 70px;
+    line-height: 1;
+}
+#line2{
+    color: #581216;
+    width: 100%;
+    height: 30%;
+    font-size: 70px;
+    line-height: 1;
+}
+#small-text{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+}
+#line3{
+    
+    font-size: 13px;
+    color: #581216;
+}
+
+#top-right{
+    height: 100%;
+    width: 20%;
+    position: relative;
+}
+#left-content{
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: right;
+    color: #581216;
+}
+
+
+#center-section{
+    width: 100%;
+    height: 31.25%;
+    display: flex;
+}
+#center-left{
+    height: 100%;
+    width: 31.25%;
+    display: flex;
+    align-items: end;
+    text-decoration: underline;
+}
+#center-left-text{
+    margin-left: 5%;
+    color: #581216;
+    font-weight: 500;
+    font-size: larger;
+}
+#center-right{
+    height: 100%;
+    width: 68.75%;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+}
+.photo{
+    height: 90%;
+    border-radius: 10px;
+}
+
+#bottom-section{
+    width: 100%;
+    height: 31.25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;justify-content: end;
+}
+#bottom-text1{
+    font-size: 70px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    color: #581216;
+}
+#bottom-text2{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: center;
+    color: #581216;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
