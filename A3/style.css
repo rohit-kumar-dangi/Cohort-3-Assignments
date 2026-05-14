@@ -5,7 +5,8 @@
 }
 
 body {
-    min-height: 100vh;
+    width: 98vw;
+    min-height: 98vh;
     font-family: 'Poppins', sans-serif;
     color: white;
 
@@ -32,7 +33,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .header h2 {
@@ -55,14 +56,17 @@ body {
 }
 
 .card {
-    width: 260px;
+    width: 280px;
 
     background: rgba(255, 255, 255, 0.14);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
-
     border-radius: 28px;
     padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
@@ -70,7 +74,7 @@ body {
 
     border: 2px solid #c96cff;
     border-radius: 30px;
-
+    width: 100%;
     background: transparent;
     color: white;
 
@@ -79,6 +83,21 @@ body {
     cursor: pointer;
 
     transition: all 0.3s ease;
+}
+
+.card-info{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card button{
+    background: transparent;
+    width: 50%;
+    height: 30%;
+    border-radius: 999px;
+    color: white;
+    border: 3px solid rgb(84, 23, 176);
 }
 
 .card button:hover {
@@ -90,41 +109,45 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: white;
     opacity: 0.85;
 }
 
-.dot-1 {
+#dot1 {
     top: 30px;
     left: 10px;
+    background: rgba(255, 255, 255, 0.61);
 }
 
-.dot-2 {
-    top: 50%;
+#dot2 {
+    top: 75%;
     left: 10px;
+    background: rgba(255, 255, 255, 0.61);
 }
 
-.dot-3 {
+#dot3 {
     bottom: 30px;
     left: 10px;
+    background: rgb(255, 255, 255);
+    width: 10px;
+    height: 10px;
 }
 
-.dot-4 {
+#dot4 {
     top: 30px;
     right: 10px;
+    background: rgba(255, 255, 255, 0.61);
 }
 
-.dot-5 {
-    top: 50%;
+#dot5 {
+    top: 75%;
     right: 10px;
+    background: rgba(255, 255, 255, 0.61);
 }
 
-.dot-6 {
+#dot6 {
     bottom: 30px;
     right: 10px;
-}
-
-
-img{
-    width: 100%;
+    background: rgb(255, 255, 255);
+    width: 10px;
+    height: 10px;
 }
