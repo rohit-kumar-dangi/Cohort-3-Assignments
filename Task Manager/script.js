@@ -30,14 +30,18 @@ const addData = ()=>{
 const showTask = () => {
     let tasks = ``
     taskData.forEach((element,index) => {
-        tasks += `<div class="task">
+        let taskClass = element[1] === true ? "comTask" : "task";
+        let pline = element[1] === true ? "pline" : "";
+        let comBtnN = element[1] === true ? 'Redo' : 'Complete';
+        let cbtn = element[1] === true ? 'completeRedoTask' : 'completeTask';
+        tasks +=`<div class="${taskClass}">
                     <div class="task_name">
-                        <p>${element[0]}</p>
+                        <p class="${pline}">${element[0]}</p>
                     </div>
                     <div class="task_option">
                         <button id="delete_btn" onclick="deleteTask(${index})">Delete</button>
                         <button id="edit_btn" onclick="editTask('${element[0]}',${index})">Edit</button>
-                        <button id="Complete_btn" onclick="completeTask(${index})">Complete</button>
+                        <button id="Complete_btn" onclick="${cbtn}(${index})">${comBtnN}</button>
                     </div>
                 </div>`
     });
@@ -69,5 +73,17 @@ const editData = ()=>{
     add_task.style.display = "none";
     showTask();
 };
+
+const completeTask = (index) => {
+    taskData[index][1]=true;
+    updateData(taskData);
+    showTask();
+};
+const completeRedoTask = (index) => {
+    taskData[index][1]=false;
+    updateData(taskData);
+    showTask();
+};
+
 
 showTask();
