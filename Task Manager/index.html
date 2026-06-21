@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="style.css">
     <title>Task Manager</title>
 </head>
@@ -12,6 +13,7 @@
 
         <header>
             <h1>Task Manager</h1>
+            <button id="add_task" onclick="showAddTask()">Add</button>
         </header>
 
         <div class="task_detail">
@@ -42,22 +44,27 @@
 
             <div class="tasks_container">
 
-                <div class="task">
-                    <div class="task_name">
-                        <p>Dom</p>
-                    </div>
-                    <div class="task_option">
-                        <button id="delete_btn">Delete</button>
-                        <button id="edit_btn">Edit</button>
-                        <button id="Complete_btn">Complete</button>
-                    </div>
-                </div>
+
 
             </div>
 
         </div>
         <footer></footer>
+
     </main>
+
+    <div class="add_task">
+        <div class="close">
+            <img src="images/close.png" alt="x">
+        </div>
+        <form class="add_form">
+            <h1>Add Task</h1>
+            <div class="task_input">
+                <input type="text">
+                <button class="btn" onclick="addData()">+ Add Task</button>
+            </div>
+        </form>
+    </div>
 
     <script src="script.js"></script>
 </body>
