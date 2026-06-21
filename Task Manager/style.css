@@ -148,8 +148,9 @@ header h1{
     align-items: center;
 }
 .pline{
+    color: greenyellow;
     text-decoration-line: line-through;
-    text-decoration-color: rgba(172, 255, 47, 0.632);
+    text-decoration-color: rgba(255, 255, 255, 0.622);
     text-decoration-thickness: 3px;
 }
 
