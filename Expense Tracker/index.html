@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <div id="login_section" class="auth_section">
+        <div class="auth_container">
+            <h1>Welcome Back</h1>
+            <h2>Login to FinTrack Pro</h2>
+            <form>
+                <label for="username">Username</label>
+                <input id="username" type="text">
+                <label for="password">Password</label>
+                <input id="password" type="text">
+                <button>Login</button>
+            </form>
+            <div>
+                <p>Don't have an account?</p>
+                <a href="#" onclick="goRegisterSection()">Register here</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="register_section" class="auth_section">
+        <div class="auth_container">
+            <h1>Create Account</h1>
+            <h2>Join FinTrack Pro</h2>
+            <form>
+                <label for="username">Choose a Username</label>
+                <input id="username" type="text">
+                <label for="password">Password</label>
+                <input id="password" type="text">
+                <button>Register</button>
+            </form>
+            <div>
+                <p>Already have an account?</p>
+                <a href="#" onclick="goLoginSection()">Login here</a>
+            </div>
+        </div>
+    </div>
+
+
+    <main>
+        <h1>Hii</h1>
+        <div class="chart-container">
+            <canvas id="cashChart"></canvas>
+        </div>
+    </main>
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
+

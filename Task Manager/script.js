@@ -4,6 +4,21 @@ let addForm = document.querySelector(".add_form");
 let taskContainer = document.querySelector(".tasks_container")
 let taskData = JSON.parse(localStorage.getItem("data")) || [];
 let editIndex = null;
+let searchTask = document.querySelector("#search_task");
+let totalTask = document.querySelector("#totaltask");
+let completedTask = document.querySelector("#completedtask");
+let pendingTask = document.querySelector("#pendingtask");
+
+
+const showDashboard = ()=>{
+    let tt = taskData.length;
+    let ct = taskData.filter((t)=>{return t[1]}).length;
+    let pt = tt-ct;
+    totalTask.innerText = tt;
+    completedTask.innerText = ct;
+    pendingTask.innerText = pt;
+};
+
 
 closeBtn.addEventListener("click",() => {
     add_task.style.display = "none";
@@ -24,12 +39,13 @@ const addData = ()=>{
     updateData(taskData);
     addForm[0].value="";
     add_task.style.display = "none";
-    showTask();
+    showDashboard();
+    showTask(taskData);
 }
 
-const showTask = () => {
+const showTask = (shownTask) => {
     let tasks = ``
-    taskData.forEach((element,index) => {
+    shownTask.forEach((element,index) => {
         let taskClass = element[1] === true ? "comTask" : "task";
         let pline = element[1] === true ? "pline" : "";
         let comBtnN = element[1] === true ? 'Redo' : 'Complete';
@@ -51,7 +67,8 @@ const showTask = () => {
 const deleteTask = (index)=>{
     taskData.splice(index,1);
     updateData(taskData);
-    showTask();
+    showTask(taskData);
+    showDashboard();
 };
 
 
@@ -71,19 +88,29 @@ const editData = ()=>{
     addForm[1].innerHTML="+ Add Task";
     addForm[1].onclick=addData;
     add_task.style.display = "none";
-    showTask();
+    showTask(taskData);
 };
 
 const completeTask = (index) => {
     taskData[index][1]=true;
     updateData(taskData);
-    showTask();
+    showTask(taskData);
+    showDashboard();
 };
 const completeRedoTask = (index) => {
     taskData[index][1]=false;
     updateData(taskData);
-    showTask();
+    showTask(taskData);
+    showDashboard();
 };
 
 
-showTask();
+searchTask.addEventListener("input",()=>{
+    let ftask = taskData.filter((ttask)=>{
+        return ttask[0].toLowerCase().includes(searchTask.value.toLowerCase());
+    });
+    showTask(ftask);
+});
+
+showTask(taskData);
+showDashboard()

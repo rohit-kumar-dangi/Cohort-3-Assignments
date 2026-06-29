@@ -18,20 +18,20 @@
 
         <div class="task_detail">
             <div class="task_search">
-                <input type="text" placeholder="Search tasks">
+                <input id="search_task" onchange="taskSearching" type="text" placeholder="Search tasks">
             </div>
             <div class="task_progress">
                 <div class="total_task">
                     <h3>Total</h3>
-                    <p>1</p>
+                    <p id="totaltask">1</p>
                 </div>
                 <div class="completed_task">
                     <h3>Completed</h3>
-                    <p>0</p>
+                    <p id="completedtask">0</p>
                 </div>
                 <div class="pending_task">
                     <h3>Pending</h3>
-                    <p>1</p>
+                    <p id="pendingtask">1</p>
                 </div>
             </div>
         </div>
