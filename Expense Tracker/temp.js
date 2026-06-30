@@ -18,3 +18,8 @@ new Chart(ctx, {
         ]
     }
 });
+
+
+<div class="chart-container">
+            <canvas id="cashChart"></canvas>
+</div>

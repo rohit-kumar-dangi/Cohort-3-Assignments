@@ -49,9 +49,90 @@
 
 
     <main>
-        <h1>Hii</h1>
-        <div class="chart-container">
-            <canvas id="cashChart"></canvas>
+        <div id="sidebar">
+            <div id="logo">
+                <div id="app_icon">
+                    <img src="app_icon.png" alt="App">
+                </div>
+                <div>
+                    <p id="app_name">Expense+</p>
+                    <p id="app_tag">Expense Tracker</p>
+                </div>
+            </div>
+            <nav>
+                <button>Dashboard</button>
+                <button>Settings</button>
+            </nav>
+            <button id="add_transaction">+ Add Transaction</button>
+        </div>
+        <div id="main_section">
+            <header>
+                <div id="userName">Rohit Dangi</div>
+                <button>Logout</button>
+            </header>
+            <div id="dashboard">
+
+                <div id="heading_container">
+                    <h1 id="heading">Financial Overview</h1>
+                    <p id="sub_heading">Real-time tracking application</p>
+                </div>
+
+                <div id="statistics">
+                    <div id="current_balance" class="statistics_card">
+                        <div id="current_balance_icon" class="icon"><img src="bank.png" alt=""></div>
+                        <div class="card_data">
+                            <p class="cardname">Current Balance</p>
+                            <p id="current_balance_data" class="data">$35200.00</p>
+                        </div>
+                    </div>
+                    <div id="total_income" class="statistics_card">
+                        <div id="total_income_icon" class="icon"><img src="increase.png" alt=""></div>
+                        <div class="card_data">
+                            <p class="cardname">Total Income</p>
+                            <p id="total_income_data" class="data">$50000.00</p>
+                        </div>
+                    </div>
+                    <div id="total_expense" class="statistics_card">
+                        <div id="total_expense_icon" class="icon"><img src="downtrend.png" alt=""></div>
+                        <div class="card_data">
+                            <p class="cardname">Total Expense</p>
+                            <p id="total_expense_data" class="data">$14800.00</p>
+                        </div>
+                    </div>
+                    <div id="total_transactions" class="statistics_card">
+                        <div id="total_transactions_icon" class="icon"><img src="piggy-bank.png" alt=""></div>
+                        <div class="card_data">
+                            <p class="cardname">Total Transactions</p>
+                            <p id="total_transactions_data" class="data">3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="expense_graph">
+                    <h2>Cash Flow Analysis</h2>
+                    <div id="graph">
+                        <canvas id="cashChart"></canvas>
+                    </div>
+                </div>
+                <div id="transactions">
+                    <h2>All Transactions</h2>
+                    <div id="filter">
+                        <input id="search_transaction" type="text" placeholder="Search transactions">
+                        <select id="filter_transaction">
+                            <option value="all_transactions" selected>All transaction</option>
+                            <option value="income_only">Income Only</option>
+                            <option value="expense_only">Expense Only</option>
+                        </select>
+                    </div>
+                    <div id="transaction_heading"></div>
+                    <div id="transaction_container">
+                        <div class="transaction">
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </main>
         
