@@ -52,7 +52,7 @@
         <div id="sidebar">
             <div id="logo">
                 <div id="app_icon">
-                    <img src="app_icon.png" alt="App">
+                    <img src="images/app_icon.png" alt="App">
                 </div>
                 <div>
                     <p id="app_name">Expense+</p>
@@ -79,28 +79,28 @@
 
                 <div id="statistics">
                     <div id="current_balance" class="statistics_card">
-                        <div id="current_balance_icon" class="icon"><img src="bank.png" alt=""></div>
+                        <div id="current_balance_icon" class="icon"><img src="images/bank.png" alt=""></div>
                         <div class="card_data">
                             <p class="cardname">Current Balance</p>
                             <p id="current_balance_data" class="data">$35200.00</p>
                         </div>
                     </div>
                     <div id="total_income" class="statistics_card">
-                        <div id="total_income_icon" class="icon"><img src="increase.png" alt=""></div>
+                        <div id="total_income_icon" class="icon"><img src="images/increase.png" alt=""></div>
                         <div class="card_data">
                             <p class="cardname">Total Income</p>
                             <p id="total_income_data" class="data">$50000.00</p>
                         </div>
                     </div>
                     <div id="total_expense" class="statistics_card">
-                        <div id="total_expense_icon" class="icon"><img src="downtrend.png" alt=""></div>
+                        <div id="total_expense_icon" class="icon"><img src="images/downtrend.png" alt=""></div>
                         <div class="card_data">
                             <p class="cardname">Total Expense</p>
                             <p id="total_expense_data" class="data">$14800.00</p>
                         </div>
                     </div>
                     <div id="total_transactions" class="statistics_card">
-                        <div id="total_transactions_icon" class="icon"><img src="piggy-bank.png" alt=""></div>
+                        <div id="total_transactions_icon" class="icon"><img src="images/piggy-bank.png" alt=""></div>
                         <div class="card_data">
                             <p class="cardname">Total Transactions</p>
                             <p id="total_transactions_data" class="data">3</p>
@@ -125,15 +125,73 @@
                         </select>
                     </div>
                     <div id="transaction_heading"></div>
-                    <div id="transaction_container">
-                        <div class="transaction">
-                            
-                        </div>
-                    </div>
+                    <table id="transaction_table">
+                        <tr>
+                            <th>DATE</th>
+                            <th>DESCRIPTION</th>
+                            <th>CATEGORY</th>
+                            <th>AMOUNT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        <tr>
+                            <td class="td_date">2026-06-29</td>
+                            <td class="td_description">Salary</td>
+                            <td class="td_category">Salary</td>
+                            <td class="td_amount">+$50000.00</td>
+                            <td>
+                                <div>
+                                    <button class="edit_btn">
+                                        <div class="action_icon">
+                                            <img src="images/edit.png" alt="edit">
+                                        </div>
+                                    </button>
+                                    <button class="delete_btn">
+                                        <div class="action_icon">
+                                            <img src="images/delete.png" alt="del">
+                                        </div>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+
+                    </table>
                 </div>
 
             </div>
+
+            <div id="setting">
+                <div id="setting_head">
+                    <h1 id="setting_heading">Settings</h1>
+                    <p id="setting_subheading">Manage your account profile and app formatting.</p>
+                </div>
+                <div class="profile_detail">
+                    <h2 class="profile_heading">Profile Details</h2>
+                    <form class="profile_deatil_form">
+                        <div class="profile_detail_input_container">
+                            <div class="profile_detail_input">
+                                <label for="fullname">Full Name</label>
+                                <input class="pdi" id="fullname" type="text" value="Rohit Dangi">
+                            </div>
+                            <div class="profile_detail_input">
+                                <label for="currency">Primary Currency</label>
+                                <select class="pdi" name="currency" id="currency">
+                                    <option value="INR">INR (₹)</option>
+                                    <option value="USD">USD ($)</option>
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="GPB">GPB (£)</option>
+                                    <option value="JPY">JPY (¥)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="profile_detail_btn">Save Changes</button>
+                    </form>
+                </div>
+            </div>
         </div>
+
+
     </main>
         
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
