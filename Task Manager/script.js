@@ -29,7 +29,7 @@ const showAddTask = () => {
 };
 
 const updateData = (datas)=>{
-    let stringData=JSON.stringify(datas)
+    let stringData=JSON.stringify(datas);
     localStorage.setItem("data",stringData);
 }
 

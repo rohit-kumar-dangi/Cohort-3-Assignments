@@ -14,12 +14,12 @@
         <div class="auth_container">
             <h1>Welcome Back</h1>
             <h2>Login to FinTrack Pro</h2>
-            <form>
+            <form id="login_form">
                 <label for="username">Username</label>
                 <input id="username" type="text">
                 <label for="password">Password</label>
                 <input id="password" type="text">
-                <button>Login</button>
+                <button onclick="login()">Login</button>
             </form>
             <div>
                 <p>Don't have an account?</p>
@@ -33,12 +33,12 @@
         <div class="auth_container">
             <h1>Create Account</h1>
             <h2>Join FinTrack Pro</h2>
-            <form>
+            <form id="register_form">
                 <label for="username">Choose a Username</label>
                 <input id="username" type="text">
                 <label for="password">Password</label>
                 <input id="password" type="text">
-                <button>Register</button>
+                <button onclick="registerNewUser()">Register</button>
             </form>
             <div>
                 <p>Already have an account?</p>
@@ -60,15 +60,16 @@
                 </div>
             </div>
             <nav>
-                <button>Dashboard</button>
-                <button>Settings</button>
+                <button onclick="activateDashboard()" id="dashboardBTN" class="active">Dashboard</button>
+                <button onclick="activateSetting()" id="settingBTN">Settings</button>
             </nav>
-            <button id="add_transaction">+ Add Transaction</button>
+            <button class="black_btn" id="add_transaction" onclick="openAddTransaction()">+ Add Transaction</button>
         </div>
         <div id="main_section">
             <header>
                 <div id="userName">Rohit Dangi</div>
-                <button>Logout</button>
+                <button id="themeBTN" onclick="changeTheme()">Dark Mode</button>
+                <button onclick="loginRequired()">Logout</button>
             </header>
             <div id="dashboard">
 
@@ -78,34 +79,7 @@
                 </div>
 
                 <div id="statistics">
-                    <div id="current_balance" class="statistics_card">
-                        <div id="current_balance_icon" class="icon"><img src="images/bank.png" alt=""></div>
-                        <div class="card_data">
-                            <p class="cardname">Current Balance</p>
-                            <p id="current_balance_data" class="data">$35200.00</p>
-                        </div>
-                    </div>
-                    <div id="total_income" class="statistics_card">
-                        <div id="total_income_icon" class="icon"><img src="images/increase.png" alt=""></div>
-                        <div class="card_data">
-                            <p class="cardname">Total Income</p>
-                            <p id="total_income_data" class="data">$50000.00</p>
-                        </div>
-                    </div>
-                    <div id="total_expense" class="statistics_card">
-                        <div id="total_expense_icon" class="icon"><img src="images/downtrend.png" alt=""></div>
-                        <div class="card_data">
-                            <p class="cardname">Total Expense</p>
-                            <p id="total_expense_data" class="data">$14800.00</p>
-                        </div>
-                    </div>
-                    <div id="total_transactions" class="statistics_card">
-                        <div id="total_transactions_icon" class="icon"><img src="images/piggy-bank.png" alt=""></div>
-                        <div class="card_data">
-                            <p class="cardname">Total Transactions</p>
-                            <p id="total_transactions_data" class="data">3</p>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div id="expense_graph">
@@ -126,36 +100,7 @@
                     </div>
                     <div id="transaction_heading"></div>
                     <table id="transaction_table">
-                        <tr>
-                            <th>DATE</th>
-                            <th>DESCRIPTION</th>
-                            <th>CATEGORY</th>
-                            <th>AMOUNT</th>
-                            <th>ACTIONS</th>
-                        </tr>
-
-                        <tr>
-                            <td class="td_date">2026-06-29</td>
-                            <td class="td_description">Salary</td>
-                            <td class="td_category">Salary</td>
-                            <td class="td_amount">+$50000.00</td>
-                            <td>
-                                <div>
-                                    <button class="edit_btn">
-                                        <div class="action_icon">
-                                            <img src="images/edit.png" alt="edit">
-                                        </div>
-                                    </button>
-                                    <button class="delete_btn">
-                                        <div class="action_icon">
-                                            <img src="images/delete.png" alt="del">
-                                        </div>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-
+                       
                     </table>
                 </div>
 
@@ -168,7 +113,7 @@
                 </div>
                 <div class="profile_detail">
                     <h2 class="profile_heading">Profile Details</h2>
-                    <form class="profile_deatil_form">
+                    <form id="setting_form" class="profile_deatil_form">
                         <div class="profile_detail_input_container">
                             <div class="profile_detail_input">
                                 <label for="fullname">Full Name</label>
@@ -177,22 +122,79 @@
                             <div class="profile_detail_input">
                                 <label for="currency">Primary Currency</label>
                                 <select class="pdi" name="currency" id="currency">
-                                    <option value="INR">INR (₹)</option>
-                                    <option value="USD">USD ($)</option>
-                                    <option value="EUR">EUR (€)</option>
-                                    <option value="GPB">GPB (£)</option>
-                                    <option value="JPY">JPY (¥)</option>
+                                    <option value="₹">INR (₹)</option>
+                                    <option value="$">USD ($)</option>
+                                    <option value="€">EUR (€)</option>
+                                    <option value="£">GPB (£)</option>
+                                    <option value="¥">JPY (¥)</option>
                                 </select>
                             </div>
                         </div>
-                        <button class="profile_detail_btn">Save Changes</button>
+                        <button onclick="changeUserDetail()" class="profile_detail_btn">Save Changes</button>
                     </form>
                 </div>
             </div>
         </div>
 
-
+            <div id="add_transaction_section" onclick="closeAddTransaction()">
+                <div id="add_transaction_input_section" onclick="event.stopPropagation()">
+                    <div id="add_transaction_input_head">
+                        <h1>Add Transaction</h1>
+                        <button id="add_transaction_close" onclick="closeAddTransaction()">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier"> 
+                                <g id="Menu / Close_SM"> 
+                                <path class="close_btn" id="Vector" d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+                                </g> 
+                                </g>
+                            </svg>
+                        </button>
+                        
+                    </div>
+                    <form id="add_transaction_form">
+                        <div id="transaction_type" class="add_trans">
+                            <label for="trans_type">Type</label>
+                            <select name="trans_type" id="trans_type" class="add_trans_in" required>
+                                <option value="Expense">Expense</option>
+                                <option value="Income">Income</option>
+                            </select>
+                        </div>
+                        <div id="transaction_desc" class="add_trans">
+                            <label for="trans_desc">Description</label>
+                            <input id="trans_desc" type="text" class="add_trans_in" placeholder="e.g. Amazon, Salary, Coffee" required>
+                        </div>
+                        <div id="transaction_am_date">
+                            <div id="transaction_amount" class="t_am_da add_trans">
+                                <label for="trans_amount">Amount</label>
+                                <input id="trans_amount" type="number" min="0" class="add_trans_in" required>
+                            </div>
+                            <div id="transaction_date" class="t_am_da add_trans">
+                                <label for="trans_date">Date</label>
+                                <input id="trans_date" type="date" class="add_trans_in" required>
+                            </div>
+                        </div>
+                        <div id="transaction_category" class="add_trans">
+                            <label for="trans_cate">Category</label>
+                            <select name="trans_cate" id="trans_cate" class="add_trans_in" required>
+                                <option value="" disabled selected hidden>Select a category</option>
+                                <option value="Food & Dining">Food & Dining</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Recharge & Bills">Recharge & Bills</option>
+                                <option value="Petrol & Auto">Petrol & Auto</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Salary">Salary</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <button class="black_btn" id="save_trans_btn" onclick="addTransaction()">Save Transaction</button>
+                    </form>
+                </div>
+            </div>
     </main>
+
         
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
