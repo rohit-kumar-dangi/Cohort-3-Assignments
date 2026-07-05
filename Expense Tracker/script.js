@@ -6,9 +6,11 @@ let cashChart = null;
 let loginSection = document.querySelector("#login_section");
 let registerSection = document.querySelector("#register_section");
 let main = document.querySelector("main");
+let headerUserName = document.querySelector("#headerUserName");
 let dashboard = document.querySelector("#dashboard");
 let dashboardBTN = document.querySelector("#dashboardBTN");
 let statisticsdiv = document.querySelector("#statistics");
+let searchTransaction = document.querySelector("#search_transaction");
 let transactionTable = document.querySelector("#transaction_table");
 let setting = document.querySelector("#setting");
 let settingBTN = document.querySelector("#settingBTN");
@@ -16,9 +18,14 @@ let loginForm = document.querySelector("#login_form");
 let registerForm = document.querySelector("#register_form");
 let addTransactionSection = document.querySelector("#add_transaction_section");
 let addTransactionForm = document.querySelector("#add_transaction_form");
+let sTBTN = document.querySelector("#save_trans_btn");
 let settingForm = document.querySelector("#setting_form");
+let settingFullname = document.querySelector("#setting_fullname");
+let currency = document.querySelector("#currency");
 let themeBTN = document.querySelector("#themeBTN");
 const body = document.body;
+let editIndex = null;
+let editTransData = allTransactions;
 
 const updateUser = (datas)=>{
     let stringUser = JSON.stringify(datas);
@@ -85,6 +92,10 @@ const registerNewUser = ()=>{
 const displayUI = ()=>{
     main.style.display="flex";
     allTransactions = JSON.parse(localStorage.getItem("transactions_"+user.username)) || [];
+    headerUserName.textContent = user.username;
+    showStats();
+    showTransaction(allTransactions);
+    showSetting();
 };
 
 // for show statistics
@@ -184,7 +195,7 @@ const showTransaction = (shownTran)=>{
                         <td class="td_amount ${t.type}">${t.type==="Expense" ? "-"+t.amount : "+"+t.amount }</td>
                         <td>
                             <div>
-                                <button class="edit_btn">
+                                <button class="edit_btn" onclick="editTrans(${index})">
                                     <div class="action_icon">
                                         <img src="images/edit.png" alt="edit">
                                     </div>
@@ -200,17 +211,72 @@ const showTransaction = (shownTran)=>{
     })
     transactionTable.innerHTML=tempTrans;
 };
+
+const showSetting = ()=>{
+    settingFullname.value = user.username;
+    currency.value = user.currency;
+};
+
+// For search transaction
+searchTransaction.addEventListener("input",()=>{
+    let strans = allTransactions.filter((ttrans)=>{
+        return ttrans.description.toLowerCase().includes(searchTransaction.value.toLowerCase());
+    });
+    showTransaction(strans);
+});
+
+// For deleting Transactions
 const deleteTrans = (index)=>{
     allTransactions.splice(index,1);
     updateTrans(allTransactions);
     showStats();
     showTransaction(allTransactions);
 };
-// const editTrans = (index)=>{
-//     updateTrans(allTransactions);
-//     showStats();
-//     showTransaction(allTransactions);
-// };
+
+// For editing Transactions
+const editTrans = (index)=>{
+    editIndex=index;
+    console.log(allTransactions[index]);
+    addTransactionForm[0].value = allTransactions[index].type;
+    addTransactionForm[1].value = allTransactions[index].description;
+    addTransactionForm[2].value = allTransactions[index].amount;
+    addTransactionForm[3].value = allTransactions[index].date;
+    addTransactionForm[4].value = allTransactions[index].category;
+    sTBTN.textContent= "Update transaction";
+    sTBTN.onclick=updateTransaction;
+    openAddTransaction();
+};
+const updateTransaction = ()=>{
+    event.preventDefault();
+    let addTrans = {
+        "type": addTransactionForm[0].value,
+        "description": addTransactionForm[1].value,
+        "amount": addTransactionForm[2].value,
+        "date": addTransactionForm[3].value,
+        "category": addTransactionForm[4].value
+    }
+    addTransactionForm[0].value = "";
+    addTransactionForm[1].value = "";
+    addTransactionForm[2].value = "";
+    addTransactionForm[3].value = "";
+    addTransactionForm[4].value = "";
+
+    allTransactions[editIndex].type = addTrans.type;
+    allTransactions[editIndex].description = addTrans.description;
+    allTransactions[editIndex].amount = addTrans.amount;
+    allTransactions[editIndex].date = addTrans.date;
+    allTransactions[editIndex].category = addTrans.category;
+
+    sTBTN.textContent = "Save Transaction";
+    sTBTN.onclick = addTransaction;
+    editIndex = null;
+
+    updateTrans(allTransactions);
+    closeAddTransaction();
+    showStats();
+    showTransaction(allTransactions);
+};
+
 
 // For show dashboard
 const activateDashboard = ()=>{
@@ -278,15 +344,27 @@ const goRegisterSection = ()=>{
 
 const changeUserDetail = ()=>{
     event.preventDefault();
-    reIn = registeredUsers.findIndex((u)=> u.username === user.username);
+    const reIn = registeredUsers.findIndex((u)=> u.username === user.username);
+    const oldUserName = user.username;
+    const newUserName = settingForm[0].value;
     registeredUsers[reIn].username=settingForm[0].value;
     registeredUsers[reIn].currency=settingForm[1].value;
     updateRegisteredUser(registeredUsers);
     user.username= settingForm[0].value;
     user.currency= settingForm[1].value;
+
+    const oldKey = "transactions_" + oldUserName;
+    const newKey = "transactions_" + newUserName;
+
+    const data = localStorage.getItem(oldKey);
+
+    if (data !== null) {
+        localStorage.setItem(newKey, data);
+        localStorage.removeItem(oldKey);
+    }
+
     updateUser(user);
-    showStats();
-    showTransaction(allTransactions);
+    displayUI();
     alert("User detail updated successfully")
 };
 
@@ -296,10 +374,8 @@ const changeUserDetail = ()=>{
 
 
 if (user !== null){
-    displayUI();
-    showStats();
-    showTransaction(allTransactions);
     allTransactions = JSON.parse(localStorage.getItem("transactions_"+user.username)) || [];
+    displayUI();
 }
 else{
     loginRequired();
