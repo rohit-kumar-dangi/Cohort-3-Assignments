@@ -11,6 +11,7 @@ let dashboard = document.querySelector("#dashboard");
 let dashboardBTN = document.querySelector("#dashboardBTN");
 let statisticsdiv = document.querySelector("#statistics");
 let searchTransaction = document.querySelector("#search_transaction");
+let filterTransaction = document.querySelector("#filter_transaction");
 let transactionTable = document.querySelector("#transaction_table");
 let setting = document.querySelector("#setting");
 let settingBTN = document.querySelector("#settingBTN");
@@ -223,6 +224,19 @@ searchTransaction.addEventListener("input",()=>{
         return ttrans.description.toLowerCase().includes(searchTransaction.value.toLowerCase());
     });
     showTransaction(strans);
+});
+
+// For Filter transaction
+filterTransaction.addEventListener("change",()=>{
+    if (filterTransaction.value==="all_transactions"){
+        showTransaction(allTransactions);
+    }
+    else{
+        let ftrans = allTransactions.filter((ttrans)=>{
+            return ttrans.type.includes(filterTransaction.value);
+        });
+        showTransaction(ftrans);
+    }
 });
 
 // For deleting Transactions
