@@ -83,6 +83,7 @@ const registerNewUser = ()=>{
     else{
         registeredUsers.push({ "username": registerForm[0].value, "password": registerForm[1].value, "currency": "₹" });
         updateRegisteredUser(registeredUsers);
+        alert("You've successfully registered.");
         loginRequired();
     }
     registerForm[0].value="";
