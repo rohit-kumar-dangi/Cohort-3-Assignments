@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ProductiveX</title>
+</head>
+<body>
+    <main>
+
+        <div id="dashboard">
+            <header>
+                <h1 id="dashboard_heading">ProductiveX</h1>
+            </header>
+            <section>
+                <div id="detail">
+                    <div id="clock" class="detaildiv">
+                        
+                    </div>
+                    <div id="cloud" class="detaildiv">
+                        <div id="temprature">20.1°C</div>
+                        <div id="rain_status">rain</div>
+                        <div id="other_cloud">
+                            <div id="humidity">Humidity : 94%</div>
+                            <div id="wind">Wind : 114.1 km/h</div>
+                        </div>
+                        <div id="location">Sagar</div>
+                    </div>
+                </div>
+
+                <div id="nav_wrapper">
+
+                    <button id="tasks_nav" class="nav" onclick="goToTasks()">
+                        <div class="nav_btn_wrapper">
+                            <img src="images/task.png" alt="">    
+                            <video autoplay muted loop disablePictureInPicture>
+                                <source src="videos/video1.mp4" type="video/mp4">
+                            </video> 
+                        </div> 
+                    </button>
+
+                    <button id="ruotine_nav" class="nav" onclick="goToRoutine()">
+                        <div class="nav_btn_wrapper">
+                            <img src="images/routine.png" alt="">    
+                            <video autoplay muted loop disablePictureInPicture>
+                                <source src="videos/video1.mp4" type="video/mp4">
+                            </video> 
+                        </div> 
+                    </button>
+
+                    <button id="quote_nav" class="nav" onclick="goToQuote()">
+                        <div class="nav_btn_wrapper">
+                            <img src="images/quote.png" alt="">    
+                            <video autoplay muted loop disablePictureInPicture>
+                                <source src="videos/video1.mp4" type="video/mp4">
+                            </video> 
+                        </div> 
+                    </button>
+
+                    <button id="timer_nav" class="nav" onclick="goToTimer()">
+                        <div class="nav_btn_wrapper">
+                            <img src="images/timer.png" alt="">    
+                            <video autoplay muted loop disablePictureInPicture>
+                                <source src="videos/video1.mp4" type="video/mp4">
+                            </video> 
+                        </div> 
+                    </button>
+
+                    <button id="daily_goal_nav" class="nav" onclick="goToDailyGoal()">
+                        <div class="nav_btn_wrapper">
+                            <img src="images/goals.png" alt="">    
+                            <video autoplay muted loop disablePictureInPicture>
+                                <source src="videos/video1.mp4" type="video/mp4">
+                            </video> 
+                        </div>                   
+                    </button>
+
+                </div>
+            </section>
+
+        </div>
+
+        <div id="tasks">
+            <div id="task_body">
+
+                <header>
+                    <h1 id="tasks_header">Your Personalised Task List</h1>
+                    <button id="add_task" onclick="showAddTask()">Add</button>
+                </header>
+                <button id="close_tasks" onclick="closeTasks()"><img src="images/close.png" alt="x"></button>
+
+                <div class="task_detail">
+                    <div class="task_search">
+                        <input id="search_task" onchange="taskSearching" type="text" placeholder="Search tasks">
+                    </div>
+                    <div class="task_progress">
+                        <div class="total_task">
+                            <h3>Total</h3>
+                            <p id="totaltask"></p>
+                        </div>
+                        <div class="completed_task">
+                            <h3>Completed</h3>
+                            <p id="completedtask"></p>
+                        </div>
+                        <div class="pending_task">
+                            <h3>Pending</h3>
+                            <p id="pendingtask"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tasks">
+
+                    <div class="tasks_heading">
+                        <h2>Your Tasks</h2>
+                    </div>
+
+                    <div class="tasks_container">
+
+
+
+                    </div>
+
+                </div>
+                <footer></footer>
+
+            </div>
+
+            <div class="add_task">
+                <div id="add_task_close" class="close">
+                    <img src="images/close.png" alt="x">
+                </div>
+                <form class="add_form">
+                    <h1>Add Task</h1>
+                    <div class="task_input">
+                        <input type="text" required>
+                        <button class="btn" onclick="addData()">+ Add Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="routine">
+            <header>
+                <h1>Plan your Day to be Productivity</h1>
+                <button onclick="closeRoutine()"><img src="images/close.png" alt="x"></button>
+            </header>
+            <div id="routine_body">
+
+            </div>
+        </div>
+
+        <div id="quote">
+            <header>
+                <button onclick="closeQuote()"><img src="images/close.png" alt="x"></button>
+            </header>
+            <div id="quote_body">
+                <div id="quote_wrapper">
+                    <div id="quote_head">Quote of the Day</div>
+                    <div id="quote_content">All My Life Through, The New Sight of Natuer Made Me Rejoice Like A Child.</div>
+                    <div id="moreBTN">More Quote</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="timer">
+            <header>
+                <h1>Study with me!</h1>
+                <button onclick="closeTimer()"><img src="images/close.png" alt="x"></button>
+            </header>
+            <div id="timer_body">
+                <h2>work session</h2>
+                <div id="timer_wrapper">
+                    <p>25:00</p>
+                    <div id="timer_btn_wrapper">
+                        <button class="timerBTN">Start</button>
+                        <button class="timerBTN">Pause</button>
+                        <button class="timerBTN">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="daily_goal">
+            <header>
+                <h1>Daily Goals</h1>
+                <button onclick="closeDailyGoal()"><img src="images/close.png" alt="x"></button>
+            </header>
+            <div id="daily_goal_body">
+                <div id="add_goal">
+                    <form id="addGoalForm">
+                        <input type="text" placeholder="Enter goal">
+                        <textarea placeholder="Enter goal description"></textarea>
+                        <button>Add goal</button>
+                    </form> 
+                </div>
+                <div id="goals_container">
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

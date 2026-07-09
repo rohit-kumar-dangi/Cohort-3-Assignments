@@ -1,0 +1,645 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+html,body{
+    height: 100vh;
+    width: 100vw;
+}
+main{
+    height: 100%;
+    width: 100%;
+}
+:root{
+    --bg:rgb(0, 0, 0);
+    --header:white;
+}
+
+
+
+/* Dashboard -----------------------------------------------*/
+#dashboard{
+    height: 100%;
+    width: 100%;
+    background-image: url('images/night_bg.jpg');
+    background-size: cover;
+    display: none;
+}
+#dashboard header{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
+    background-color: var(--header);
+}
+#dashboard_heading{
+    font-size: 1.5rem;
+}
+#dashboard section{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2%;
+}
+/* Time and cloud */
+#detail{
+    width: 550px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.747);
+    background: transparent;
+    background-color: rgba(255, 255, 255, 0.432);
+    padding: 3% 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.detaildiv{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#clock{
+    width: 70%;
+    height: 80%;
+}
+#time{
+    font-size: 35px;
+    font-weight: 800;
+}
+#day{
+    font-size: 25px;
+    font-weight: 800;
+}
+#date{
+    font-size: 15px;
+    font-weight: 800;
+}
+#location{
+    font-size: 15px;
+    font-weight: 800;
+}
+#cloud{
+    width: 30%;
+    height: 80%;
+}
+#temprature{
+    font-size: 30px;
+    font-weight: 600;
+}
+#rain_status{
+    font-size: 20px;
+    font-weight: 600;
+}
+#other_cloud{
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+/* navigation */
+#nav_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.nav{
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.nav_btn_wrapper{
+    height: 100px;
+    width: 100px;
+    position: relative;
+
+}
+.nav_btn_wrapper img,
+.nav_btn_wrapper video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+.nav_btn_wrapper video{
+    opacity: 0;
+}
+.nav_btn_wrapper:hover img{
+    opacity: 0;
+}
+.nav_btn_wrapper:hover video{
+    opacity: 1;
+}
+
+
+
+/* Tasks -------------------------------------------------------*/
+#tasks{
+    height: 100%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(5, 2, 58);
+}
+#task_body{
+    width: 75%;
+    min-height: 100%;
+}
+#tasks header{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#tasks_header{
+    font-size: 30px;
+    color: antiquewhite;
+}
+#tasks header button{
+    height: 30%;
+    width: 5%;
+    font-size: large;
+    border-radius: 10px;
+    border: 0cap;
+    background-color: antiquewhite;
+    cursor: pointer;
+    color: black;
+}
+.task_detail{
+    width: 100%;
+    height: 25%;
+    border-radius: 20px;
+    background-color: rgb(9, 6, 72);
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2%;
+}
+.task_search{
+    width: 100%;
+    height: 30%;
+}
+.task_search input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgb(5, 2, 58);
+    border: 1px solid rgba(245, 245, 245, 0.197);
+    padding-left: 2%;
+}
+.task_progress{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 55%;
+}
+.task_progress div{
+    height: 100%;
+    width: 25%;
+    background-color: rgb(5, 2, 58);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 1%;
+}
+.task_progress h3{
+    font-size: large;
+    color: rgba(240, 248, 255, 0.393);
+}
+.task_progress p{
+    font-size: xx-large;
+}
+.total_task p{
+    color: white;
+}
+.completed_task p{
+    color: green;
+}
+.pending_task p{
+    color: yellow;
+}
+.tasks{
+    width: 100%;
+    min-height: 25%;
+    border-radius: 20px;
+    background-color: rgb(9, 6, 72);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+}
+.tasks_heading{
+    height: 70px;
+    width: 96%;
+    color: antiquewhite;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+.tasks_container{
+    min-height: 90px;
+    width: 96%;
+}
+.task{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(5, 2, 58);;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: antiquewhite;
+}
+.comTask{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(3, 1, 34);;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.pline{
+    color: greenyellow;
+    text-decoration-line: line-through;
+    text-decoration-color: rgba(255, 255, 255, 0.622);
+    text-decoration-thickness: 3px;
+}
+.task_name{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.task_name p{
+    font-size: large;
+}
+.task_option{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+.task_option button{
+    color: antiquewhite;
+    background-color: black;
+    padding: 2% 4% 2% 4%;
+    border-radius: 10px;
+}
+#delete_btn{
+    background-color: rgb(122, 43, 43);
+    border: 0cap;
+    cursor: pointer;
+}
+#edit_btn{
+    background-color: rgb(111, 111, 32);
+    border: 0cap;
+    cursor: pointer;
+}
+#Complete_btn{
+    background-color: green;
+    border: 0cap;
+    cursor: pointer;
+}
+footer{
+    width: 100%;
+    height: 5%;
+}
+.add_task{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.301);
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.close{
+    position: absolute;
+    top: 35%;
+    left: 75%;
+}
+.add_form{
+    height: 25%;
+    width: 50%;
+    border-radius: 25px;
+    padding: 3%;
+    background-color: rgb(9, 6, 72);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: antiquewhite;
+}
+.task_input{
+    display: flex;
+    justify-content: space-between;
+}
+.task_input input{
+    width: 80%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgb(5, 2, 58);
+    border: 0cap;
+    padding: 0 12px;
+    color: antiquewhite;
+}
+.task_input button{
+    width: 16%;
+    height: 40px;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-size: medium;
+}
+#tasks button{
+    background-color: antiquewhite;
+    color: rgb(5, 5, 5);
+}
+#close_tasks{
+    position: absolute;
+    top: 3%;
+    left: 97%;
+    cursor: pointer;
+    border: none;
+}
+#close_tasks img{
+    height: 25px;
+    width: 25px;
+    background-color: rgb(5, 2, 58);
+}
+
+
+
+
+/* Routine -------------------------------------------------- */
+#routine{
+    height: 100%;
+    width: 100%;
+    display: none;
+    padding: 1.2%;
+    flex-direction: column;
+    align-items: center;
+    background-color: azure;
+}
+#routine header{
+    width: 100%;
+    height: 50px;
+    padding: 1.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#routine header h1{
+    font-size: 25px;
+}
+#routine header button{
+    cursor: pointer;
+    border: none;
+    background-color: rgba(94, 89, 93);
+}
+#routine header img{
+    height: 20px;
+}
+#routine_body{
+    width: 100%;
+    height: calc(100% - 50px);
+    border-radius: 10px;
+    background-color: rgba(94, 89, 93);
+}
+
+
+
+/* Quote ---------------------------------------------------  */
+#quote{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+}
+#quote header{
+    width: 100%;
+    height: 50px;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#quote header button{
+    cursor: pointer;
+    border: none;
+    background-color: rgba(94, 89, 93);
+}
+#quote header img{
+    height: 20px;
+}
+#quote_body{
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+#quote_wrapper{
+    height: 120px;
+    width: 80%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    background-color: rgba(94, 89, 93);
+    padding: 0.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#quote_head{
+    height: 25px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+#quote_content{
+    color: aliceblue;
+    font-size: 20px;
+}
+#moreBTN{
+    height: 25px;
+    width: 90px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+
+/* Timer --------------------------------------------------- */
+#timer{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgb(255, 255, 255);
+}
+#timer header{
+    width: 100%;
+    height: 50px;
+    padding: 0% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#timer header h1{
+    font-size: 30px;
+}
+#timer header button{
+    cursor: pointer;
+    border: none;
+    background-color: rgba(94, 89, 93);
+}
+#timer header img{
+    height: 20px;
+}
+#timer_body{
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#timer_body h2{
+    position: absolute;
+    top: 25%;
+    font-size: 25px;
+    height: 40px;
+    width: 190px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(182, 181, 183);
+}
+#timer_wrapper{
+    height: 150px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+#timer_wrapper p{
+    font-size: 80px;
+    font-weight: 700;
+}
+#timer_btn_wrapper{
+    height: 40px;
+    width : 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.timerBTN{
+    cursor: pointer;
+    border: none;
+    height: 30px;
+    width: 65px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgb(171, 171, 171);
+}
+
+
+
+
+/* Daily Goal ---------------------------------------------- */
+#daily_goal{
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 1.5%;
+    background-color: rgb(255, 255, 255);
+}
+#daily_goal header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+#daily_goal header h1{
+    font-size: 30px;
+}
+#daily_goal header button{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(94, 89, 93);
+}
+#daily_goal header img{
+    height: 20px;
+}
+#daily_goal_body{
+    width: 100%;
+    height: calc(100% - 50px);
+    border-radius: 10px;
+    display: flex;
+    gap: 1.5%;
+}
+#add_goal{
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+    padding: 1.5%;
+    background-color: rgba(94, 89, 93);
+}
+#addGoalForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#addGoalForm input{
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    padding: 2% 4%;
+}
+#addGoalForm textarea{
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+    padding: 2% 4%;
+}
+#addGoalForm button{
+    cursor: pointer;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+}
+#goals_container{
+    height: 100%;
+    width: 70%;
+    border-radius: 10px;
+    background-color: rgba(94, 89, 93);
+}
