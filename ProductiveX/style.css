@@ -25,7 +25,7 @@ main{
     width: 100%;
     background-image: url('images/night_bg.jpg');
     background-size: cover;
-    display: none;
+    display: block;
 }
 #dashboard header{
     height: 40px;
@@ -150,7 +150,7 @@ main{
     display: none;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(5, 2, 58);
+    background-color: rgb(255, 255, 255);
 }
 #task_body{
     width: 75%;
@@ -165,7 +165,7 @@ main{
 }
 #tasks_header{
     font-size: 30px;
-    color: antiquewhite;
+    color: black;
 }
 #tasks header button{
     height: 30%;
@@ -173,7 +173,7 @@ main{
     font-size: large;
     border-radius: 10px;
     border: 0cap;
-    background-color: antiquewhite;
+    background-color: rgba(94, 89, 93, 0.434);
     cursor: pointer;
     color: black;
 }
@@ -181,7 +181,7 @@ main{
     width: 100%;
     height: 25%;
     border-radius: 20px;
-    background-color: rgb(9, 6, 72);
+    background-color: rgba(94, 89, 93);
     margin-bottom: 2%;
     display: flex;
     flex-direction: column;
@@ -196,7 +196,7 @@ main{
     height: 100%;
     width: 100%;
     border-radius: 5px;
-    background-color: rgb(5, 2, 58);
+    background-color: white;
     border: 1px solid rgba(245, 245, 245, 0.197);
     padding-left: 2%;
 }
@@ -209,33 +209,34 @@ main{
 .task_progress div{
     height: 100%;
     width: 25%;
-    background-color: rgb(5, 2, 58);
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding-left: 1%;
+    border-radius: 10px;
 }
 .task_progress h3{
     font-size: large;
-    color: rgba(240, 248, 255, 0.393);
+    color: black;
 }
 .task_progress p{
     font-size: xx-large;
 }
 .total_task p{
-    color: white;
+    color: black;
 }
 .completed_task p{
-    color: green;
+    color: rgb(0, 131, 0);
 }
 .pending_task p{
-    color: yellow;
+    color: rgb(142, 142, 45);
 }
 .tasks{
     width: 100%;
     min-height: 25%;
     border-radius: 20px;
-    background-color: rgb(9, 6, 72);
+    background-color: rgba(94, 89, 93);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -244,7 +245,7 @@ main{
 .tasks_heading{
     height: 70px;
     width: 96%;
-    color: antiquewhite;
+    color: black;
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -256,7 +257,7 @@ main{
 .task{
     width: 100%;
     height: 80px;
-    background-color: rgb(5, 2, 58);;
+    background-color: white;
     border-radius: 10px;
     margin-bottom: 2%;
     display: flex;
@@ -267,7 +268,7 @@ main{
 .comTask{
     width: 100%;
     height: 80px;
-    background-color: rgb(3, 1, 34);;
+    background-color: rgb(161, 161, 165);;
     border-radius: 10px;
     margin-bottom: 2%;
     display: flex;
@@ -275,9 +276,9 @@ main{
     align-items: center;
 }
 .pline{
-    color: greenyellow;
+    color: rgb(4, 73, 13);
     text-decoration-line: line-through;
-    text-decoration-color: rgba(255, 255, 255, 0.622);
+    text-decoration-color: whitesmoke;
     text-decoration-thickness: 3px;
 }
 .task_name{
@@ -288,6 +289,8 @@ main{
 }
 .task_name p{
     font-size: large;
+    color:black;
+    font-weight: 700;
 }
 .task_option{
     width: 25%;
@@ -295,10 +298,9 @@ main{
     justify-content: space-around;
 }
 .task_option button{
-    color: antiquewhite;
-    background-color: black;
     padding: 2% 4% 2% 4%;
     border-radius: 10px;
+    color: white;
 }
 #delete_btn{
     background-color: rgb(122, 43, 43);
@@ -364,11 +366,11 @@ footer{
     font-weight: bolder;
     font-size: medium;
 }
-#tasks button{
-    background-color: antiquewhite;
+#tasks header button{
     color: rgb(5, 5, 5);
 }
 #close_tasks{
+    height: 25px;
     position: absolute;
     top: 3%;
     left: 97%;
@@ -376,8 +378,8 @@ footer{
     border: none;
 }
 #close_tasks img{
-    height: 25px;
-    width: 25px;
+    height: 100%;
+    width: 100%;
     background-color: rgb(5, 2, 58);
 }
 
@@ -577,7 +579,7 @@ footer{
 #daily_goal{
     width: 100%;
     height: 100%;
-    display: block;
+    display: none;
     padding: 1.5%;
     background-color: rgb(255, 255, 255);
 }
@@ -642,4 +644,40 @@ footer{
     width: 70%;
     border-radius: 10px;
     background-color: rgba(94, 89, 93);
+    padding: 1.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+}
+.goal_wrapper{
+    width: 100%;
+    min-height: 100px;
+    background-color: rgb(0, 0, 0);
+    position: relative;
+    border-radius: 10px;
+    color: aliceblue;
+    padding: 2% 3% 2% 2%;
+}
+.delete_goal_btn{
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    border: none;
+    position : absolute;
+    top: 15px;
+    right: 15px;
+}
+.delete_goal_btn img{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+.goal{
+    font-size: 18px;
+    margin-bottom: 1%;
+}
+.goal_description{
+    font-size: 13px;
+    font-weight: 100;
+    line-height: 130%;
 }

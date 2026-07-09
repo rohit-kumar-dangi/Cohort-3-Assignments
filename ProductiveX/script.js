@@ -1,5 +1,5 @@
 const clock = document.querySelector("#clock");
-const cloud = document.querySelector("cloud");
+const cloud = document.querySelector("#cloud");
 
 let days = [
     "Sunday", "Monday", "Tuesday", "Wednesday",
@@ -10,16 +10,67 @@ let months = [
     "May", "June", "July", "August",
     "September", "October", "November", "December"
 ];
-const showClock = ()=>{
-    let currentTime = new Date();
-    clock.innerHTML=`<div id="time">${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()} ${currentTime.getHours() >= 12 ? "PM" : "AM"}</div>
-                     <div id="day">${days[currentTime.getDay()]}</div>
-                     <div id="date">${currentTime.getDate()} ${months[currentTime.getMonth()]}, ${currentTime.getFullYear()}</div>`
+const showClock = () => {
+    const currentTime = new Date();
+
+    let hours = currentTime.getHours();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+
+    const minutes = String(currentTime.getMinutes()).padStart(2, "0");
+    const seconds = String(currentTime.getSeconds()).padStart(2, "0");
+
+    clock.innerHTML = `
+        <div id="time">${hours<10? "0"+hours : hours}:${minutes}:${seconds} ${ampm}</div>
+        <div id="day">${days[currentTime.getDay()]}</div>
+        <div id="date">${currentTime.getDate()} ${months[currentTime.getMonth()]}, ${currentTime.getFullYear()}</div>
+    `;
 };
 setInterval(()=>{
     showClock();
 },1000);
 
+async function getWeather(latitude, longitude) {
+    try {
+        const response = await fetch(
+            `https://api.weatherapi.com/v1/current.json?key=d9129a81fdd14a6194794548260707&q=${latitude},${longitude}`
+        );
+
+        const data = await response.json();
+        cloud.innerHTML = `
+                            <div id="temprature">${data.current.temp_c}°C</div>
+                            <div id="rain_status">${data.current.condition.text} <img src="${data.current.condition.icon}" style="height:25px;"></div>
+                            <div id="other_cloud">
+                                <div id="humidity">Humidity : ${data.current.humidity}%</div>
+                                <div id="wind">Wind : ${data.current.wind_kph} km/h</div>
+                            </div>
+                            <div id="location">${data.location.name}</div>
+        `;
+    } catch (error) {
+        cloud.innerHTML = "<p>Unable to fetch weather.</p>";
+        console.error(error);
+    }
+}
+function getLocation() {
+    if (!navigator.geolocation) {
+        cloud.innerHTML = "Geolocation is not supported.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            getWeather(latitude, longitude);
+        },
+        (error) => {
+            cloud.innerHTML = "Location permission denied.";
+            console.error(error);
+        }
+    );
+}
+getLocation();
 
 
 
