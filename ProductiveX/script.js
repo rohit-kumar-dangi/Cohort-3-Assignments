@@ -32,12 +32,13 @@ const showClock = () => {
 
     const minutes = String(currentTime.getMinutes()).padStart(2, "0");
     const seconds = String(currentTime.getSeconds()).padStart(2, "0");
-    if(hours>=6 && hours<=19){
+    if(hours<=6 && hours<=19){
         bg="Day";
     }
     else{
         bg="Night";
     }
+    console.log(bg);
     clock.innerHTML = `
         <div id="time">${hours<10? "0"+hours : hours}:${minutes}:${seconds} ${ampm}</div>
         <div id="day">${days[currentTime.getDay()]}</div>
