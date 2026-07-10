@@ -14,6 +14,12 @@
                 <h1 id="dashboard_heading">ProductiveX</h1>
             </header>
             <section>
+                <div id="bg">
+                    <img id="bgImg" src="images/day.jpg">
+                    <video id="bgVideo" autoplay muted loop disablePictureInPicture>
+                        <source src="videos/day.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div id="detail">
                     <div id="clock" class="detaildiv">
                         
@@ -158,25 +164,25 @@
             <div id="quote_body">
                 <div id="quote_wrapper">
                     <div id="quote_head">Quote of the Day</div>
-                    <div id="quote_content">All My Life Through, The New Sight of Natuer Made Me Rejoice Like A Child.</div>
-                    <div id="moreBTN">More Quote</div>
+                    <div id="quote_content">loading...............</div>
+                    <div id="author">loading</div>
                 </div>
             </div>
         </div>
 
         <div id="timer">
             <header>
-                <h1>Study with me!</h1>
+                <h1 id="sessionName">Study with me!</h1>
                 <button onclick="closeTimer()"><img src="images/close.png" alt="x"></button>
             </header>
             <div id="timer_body">
                 <h2>work session</h2>
                 <div id="timer_wrapper">
-                    <p>25:00</p>
+                    <p id="timer_display">00:00</p>
                     <div id="timer_btn_wrapper">
-                        <button class="timerBTN">Start</button>
-                        <button class="timerBTN">Pause</button>
-                        <button class="timerBTN">Reset</button>
+                        <button onclick="startTimer()" class="timerBTN">Start</button>
+                        <button onclick="pauseTimer()" class="timerBTN">Pause</button>
+                        <button onclick="resetTimer()" class="timerBTN">Reset</button>
                     </div>
                 </div>
             </div>
@@ -192,21 +198,11 @@
                     <form id="addGoalForm">
                         <input type="text" placeholder="Enter goal">
                         <textarea placeholder="Enter goal description"></textarea>
-                        <button>Add goal</button>
+                        <button onclick="addGoal()">Add goal</button>
                     </form> 
                 </div>
                 <div id="goals_container">
-                    <div class="goal_wrapper">
-                        <div class="goal">Study</div>
-                        <div class="goal_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus pariatur harum possimus, laboriosam recusandae molestias culpa perferendis. Molestiae provident nostrum molestias! Quis nobis voluptatem perspiciatis veniam doloribus voluptates doloremque facilis. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium fugiat officiis corrupti? Earum numquam in repudiandae expedita asperiores, optio ad, corrupti molestiae nulla aut aperiam delectus quos iste odit.</div>
-                        <button class="delete_goal_btn"><img src="images/close.png" alt="x"></button>
-                    </div>
-
-                    <div class="goal_wrapper">
-                        <div class="goal"></div>
-                        <div class="goal_description"></div>
-                        <button class="delete_goal_btn"><img src="images/close.png" alt="x"></button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

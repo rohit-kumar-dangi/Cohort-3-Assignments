@@ -1,5 +1,18 @@
+// Dashboard ----------------------------------------------------------------------------------
 const clock = document.querySelector("#clock");
 const cloud = document.querySelector("#cloud");
+const bgImg = document.querySelector("#bgImg");
+const bgVideo = document.querySelector("#bgVideo");
+let bg = null;
+let currentBG = null;
+const setDay = ()=>{
+    bgImg.src="images/day.jpg";
+    bgVideo.src="videos/day.mp4";
+};
+const setNight = ()=>{
+    bgImg.src="images/night.jpg";
+    bgVideo.src="videos/night.mp4";
+};
 
 let days = [
     "Sunday", "Monday", "Tuesday", "Wednesday",
@@ -19,7 +32,12 @@ const showClock = () => {
 
     const minutes = String(currentTime.getMinutes()).padStart(2, "0");
     const seconds = String(currentTime.getSeconds()).padStart(2, "0");
-
+    if(hours>=6 && hours<=19){
+        bg="Day";
+    }
+    else{
+        bg="Night";
+    }
     clock.innerHTML = `
         <div id="time">${hours<10? "0"+hours : hours}:${minutes}:${seconds} ${ampm}</div>
         <div id="day">${days[currentTime.getDay()]}</div>
@@ -28,7 +46,19 @@ const showClock = () => {
 };
 setInterval(()=>{
     showClock();
+    setbg();
 },1000);
+
+const setbg = ()=>{
+    if(bg==="Day"&&bg!==currentBG){
+        setDay();
+        currentBG=bg;
+    }
+    else if(bg==="Night"&&bg!==currentBG){
+        setNight();
+        currentBG=bg;
+    }
+};
 
 async function getWeather(latitude, longitude) {
     try {
@@ -71,10 +101,6 @@ function getLocation() {
     );
 }
 getLocation();
-
-
-
-
 // Navigations----------------------------------------------------------------------------------
 const dashboard = document.querySelector("#dashboard");
 const tasks = document.querySelector("#tasks");
@@ -86,7 +112,7 @@ const goToTasks = ()=>{
     dashboard.style.display = "none";
     tasks.style.display = "flex";
     showTask(taskData);
-    showDashboard()
+    showTaskDashboard()
 }
 const goToRoutine = ()=>{
     dashboard.style.display = "none";
@@ -95,6 +121,7 @@ const goToRoutine = ()=>{
 const goToQuote = ()=>{
     dashboard.style.display = "none";
     quote.style.display = "flex";
+    getQuote();
 }
 const goToTimer = ()=>{
     dashboard.style.display = "none";
@@ -139,7 +166,7 @@ let searchTask = document.querySelector("#search_task");
 let totalTask = document.querySelector("#totaltask");
 let completedTask = document.querySelector("#completedtask");
 let pendingTask = document.querySelector("#pendingtask");
-const showDashboard = ()=>{
+const showTaskDashboard = ()=>{
     let tt = taskData.length;
     let ct = taskData.filter((t)=>{return t[1]}).length;
     let pt = tt-ct;
@@ -163,7 +190,7 @@ const addData = ()=>{
     updateData(taskData);
     addForm[0].value="";
     add_task.style.display = "none";
-    showDashboard();
+    showTaskDashboard();
     showTask(taskData);
 };
 const showTask = (shownTask) => {
@@ -190,7 +217,7 @@ const deleteTask = (index)=>{
     taskData.splice(index,1);
     updateData(taskData);
     showTask(taskData);
-    showDashboard();
+    showTaskDashboard();
 };
 const editTask = (element,index)=>{
     showAddTask();
@@ -214,13 +241,13 @@ const completeTask = (index) => {
     taskData[index][1]=true;
     updateData(taskData);
     showTask(taskData);
-    showDashboard();
+    showTaskDashboard();
 };
 const completeRedoTask = (index) => {
     taskData[index][1]=false;
     updateData(taskData);
     showTask(taskData);
-    showDashboard();
+    showTaskDashboard();
 };
 searchTask.addEventListener("input",()=>{
     let ftask = taskData.filter((ttask)=>{
@@ -231,18 +258,169 @@ searchTask.addEventListener("input",()=>{
 
 
 // Routine -----------------------------------------------------------------------------------------------------
+const routineBody = document.querySelector("#routine_body");
+const routineData = JSON.parse(localStorage.getItem("routine")) || {};
 
+for (let hour = 6; hour < 24; hour++) {
+    routineBody.innerHTML += `
+        <div class="routine_slot">
+            <h3>${hour}:00 - ${hour + 1}:00</h3>
+            <textarea onchange="addRoutine(${hour}, this.value)" placeholder="........">${routineData[hour] || ""}</textarea>
+        </div>
+    `;
+}
 
+const addRoutine = (hour, value)=>{
+    console.log(value);
+    routineData[hour] = value;
+    localStorage.setItem("routine",JSON.stringify(routineData));
+}
 
 
 // Quote ------------------------------------------------------------------------------------------------------
+const quoteContent = document.querySelector("#quote_content");
+const quoteAuthor = document.querySelector("#author");
+async function getQuote() {
+    try {
+        const response = await fetch("https://dummyjson.com/quotes/random");
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch quote");
+        }
+
+        const data = await response.json();
+
+        quoteContent.innerHTML=`${data.quote}`;
+        quoteAuthor.innerHTML=`${data.author}`;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 
 
 
 // TImer --------------------------------------------------------------------------------------------------------
+let minutes = 25;
+let seconds = 0;
+
+let timers = null;
+let isRunning = false;
+let isWorkSession = true;
+
+const updateDisplay = ()=>{
+    document.querySelector("#timer_display").textContent =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+const startTimer = ()=>{
+    if (isRunning) return;
+    isRunning = true;
+    timers = setInterval(() => {
+        if (seconds === 0) {
+            if (minutes === 0) {
+                clearInterval(timers);
+                isRunning = false;
+                sessionCompleted();
+                return;
+            }
+            minutes--;
+            seconds = 59;
+        } else {
+            seconds--;
+        }
+        updateDisplay();
+    }, 1000);
+}
+const pauseTimer = ()=>{
+    clearInterval(timers);
+    isRunning = false;
+}
+const resetTimer = ()=>{
+
+    clearInterval(timers);
+    isRunning = false;
+
+    if (isWorkSession) {
+        minutes = 25;
+    } else {
+        minutes = 5;
+    }
+    seconds = 0;
+    updateDisplay();
+
+}
+const sessionCompleted = ()=>{
+    if (isWorkSession) {
+        alert("Work session completed!");
+        isWorkSession = false;
+        minutes = 5;
+        document.querySelector("#sessionName").textContent = "Break Session";
+    } else {
+        alert("Break completed!");
+        isWorkSession = true;
+        minutes = 25;
+        document.querySelector("#sessionName").textContent = "Work Session";
+
+    }
+
+    seconds = 0;
+
+    updateDisplay();
+
+}
+updateDisplay();
 
 
 
 
 // Daily goal ---------------------------------------------------------------------------------------------------
+
+
+const goalArr = JSON.parse(localStorage.getItem("dailyGoals"))||[];
+const addGoalForm = document.querySelector("#addGoalForm");
+const goalsContainer = document.querySelector("#goals_container");
+
+const showGoals = ()=>{
+    let goals="";
+    goalArr.forEach((element,index)=>{
+        goals+= `
+        <div class="goal_wrapper">
+            <div class="goal">${element.goal}</div>
+            <div class="goal_description">${element.goalDes}</div>
+            <button onClick="deleteGoal(${index})" class="delete_goal_btn"><img src="images/close.png" alt="x"></button>
+        </div>`
+    });
+    goalsContainer.innerHTML=goals;
+};
+
+const updateGoalData = (datas)=>{
+    let stringDailyGoal = JSON.stringify(datas);
+    localStorage.setItem("dailyGoals",stringDailyGoal);
+};
+
+const addGoal = ()=>{
+    event.preventDefault();
+    if (addGoalForm[0].value===""){
+        alert("Please add Goal !");
+        return
+    }
+    goalArr.push({
+        "goal":addGoalForm[0].value,
+        "goalDes":addGoalForm[1].value
+    });
+    addGoalForm[0].value = "";
+    addGoalForm[1].value = "";
+    console.log(goalArr);
+    updateGoalData(goalArr);
+    showGoals();
+};
+showGoals();
+
+const deleteGoal = (index)=>{
+    console.log(index+" deleted")
+    goalArr.splice(index,1);
+    updateGoalData(goalArr);
+    showGoals();
+};

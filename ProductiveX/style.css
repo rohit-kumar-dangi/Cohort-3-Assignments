@@ -23,7 +23,6 @@ main{
 #dashboard{
     height: 100%;
     width: 100%;
-    background-image: url('images/night_bg.jpg');
     background-size: cover;
     display: block;
 }
@@ -45,7 +44,38 @@ main{
     align-items: center;
     justify-content: space-between;
     padding: 2%;
+    position: relative;
 }
+
+#bg{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index:-1;
+}
+
+#bg img,
+#bg video{
+    position: absolute;
+    inset: 0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+#bg video{
+    opacity:0;
+    transition:.3s;
+}
+
+#dashboard section:hover #bg img{
+    opacity: 0;
+}
+
+#dashboard section:hover #bg video{
+    opacity: 1;
+}
+
 /* Time and cloud */
 #detail{
     width: 550px;
@@ -120,7 +150,6 @@ main{
     height: 100px;
     width: 100px;
     position: relative;
-
 }
 .nav_btn_wrapper img,
 .nav_btn_wrapper video {
@@ -340,11 +369,11 @@ footer{
     width: 50%;
     border-radius: 25px;
     padding: 3%;
-    background-color: rgb(9, 6, 72);
+    background-color: rgba(94, 89, 93);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: antiquewhite;
+    color: black;
 }
 .task_input{
     display: flex;
@@ -354,10 +383,10 @@ footer{
     width: 80%;
     height: 40px;
     border-radius: 8px;
-    background-color: rgb(5, 2, 58);
+    background-color: white;
     border: 0cap;
     padding: 0 12px;
-    color: antiquewhite;
+    color: black;
 }
 .task_input button{
     width: 16%;
@@ -367,7 +396,7 @@ footer{
     font-size: medium;
 }
 #tasks header button{
-    color: rgb(5, 5, 5);
+    color: black;
 }
 #close_tasks{
     height: 25px;
@@ -376,11 +405,11 @@ footer{
     left: 97%;
     cursor: pointer;
     border: none;
+    background-color: rgb(146, 154, 154);
 }
 #close_tasks img{
     height: 100%;
     width: 100%;
-    background-color: rgb(5, 2, 58);
 }
 
 
@@ -417,9 +446,34 @@ footer{
 }
 #routine_body{
     width: 100%;
-    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
     border-radius: 10px;
     background-color: rgba(94, 89, 93);
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:15px;
+    overflow-y:auto;
+    background:#6d696d;
+}
+.routine_slot{
+    background:white;
+    border-radius:8px;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.routine_slot h3{
+    font-size:14px;
+}
+.routine_slot textarea{
+    flex:1;
+    resize:none;
+    border:none;
+    outline:none;
+    font-size:14px;
 }
 
 
@@ -482,9 +536,8 @@ footer{
     color: aliceblue;
     font-size: 20px;
 }
-#moreBTN{
+#author{
     height: 25px;
-    width: 90px;
     border-radius: 5px;
     background-color: aliceblue;
     align-self: flex-end;
@@ -493,6 +546,7 @@ footer{
     justify-content: center;
     font-size: 13px;
     font-weight: 700;
+    padding: 0% 1%;
 }
 
 
@@ -651,7 +705,7 @@ footer{
 }
 .goal_wrapper{
     width: 100%;
-    min-height: 100px;
+    min-height: 80px;
     background-color: rgb(0, 0, 0);
     position: relative;
     border-radius: 10px;
