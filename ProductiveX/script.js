@@ -38,7 +38,6 @@ const showClock = () => {
     else{
         bg="Night";
     }
-    console.log(bg);
     clock.innerHTML = `
         <div id="time">${hours<10? "0"+hours : hours}:${minutes}:${seconds} ${ampm}</div>
         <div id="day">${days[currentTime.getDay()]}</div>
