@@ -6,7 +6,7 @@ const bgVideo = document.querySelector("#bgVideo");
 let bg = null;
 let currentBG = null;
 const setDay = ()=>{
-    bgImg.src="images/day.jpg";
+    bgImg.src="images/day1.jpg";
     bgVideo.src="videos/day.mp4";
 };
 const setNight = ()=>{
