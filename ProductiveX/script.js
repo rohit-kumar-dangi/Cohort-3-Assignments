@@ -6,7 +6,7 @@ const bgVideo = document.querySelector("#bgVideo");
 let bg = null;
 let currentBG = null;
 const setDay = ()=>{
-    bgImg.src="images/day.jpg";
+    bgImg.src="images/day.png";
     bgVideo.src="videos/day.mp4";
 };
 const setNight = ()=>{
@@ -26,13 +26,13 @@ let months = [
 const showClock = () => {
     const currentTime = new Date();
 
-    let hours = currentTime.getHours();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
+    let hour = currentTime.getHours();
+    const ampm = hour >= 12 ? "PM" : "AM";
+    hours = hour % 12 || 12;
 
     const minutes = String(currentTime.getMinutes()).padStart(2, "0");
     const seconds = String(currentTime.getSeconds()).padStart(2, "0");
-    if(hours>=6 && hours<=19){
+    if(hour>=6 && hour<=19){
         bg="Day";
     }
     else{
