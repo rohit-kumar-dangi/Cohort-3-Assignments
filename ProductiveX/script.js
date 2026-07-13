@@ -261,14 +261,29 @@ searchTask.addEventListener("input",()=>{
 const routineBody = document.querySelector("#routine_body");
 const routineData = JSON.parse(localStorage.getItem("routine")) || {};
 
+function formatHour(hour) {
+    const period = hour >= 12 ? "PM" : "AM";
+    const h = hour % 12 || 12;
+    return `${h}:00 ${period}`;
+}
+
+let html = "";
+
 for (let hour = 6; hour < 24; hour++) {
-    routineBody.innerHTML += `
+
+    html += `
         <div class="routine_slot">
-            <h3>${hour}:00 - ${hour + 1}:00</h3>
-            <textarea onchange="addRoutine(${hour}, this.value)" placeholder="........">${routineData[hour] || ""}</textarea>
+            <h3>${formatHour(hour)} - ${formatHour(hour + 1)}</h3>
+
+            <textarea
+                onchange="addRoutine(${hour}, this.value)"
+                placeholder="........">${routineData[hour] || ""}</textarea>
+
         </div>
     `;
 }
+
+routineBody.innerHTML = html;
 
 const addRoutine = (hour, value)=>{
     console.log(value);
