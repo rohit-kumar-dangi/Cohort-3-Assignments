@@ -3,8 +3,6 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/home/Hero";
 import Stats from "../components/home/Stats";
 import CategorySection from "../components/home/CategorySection";
-import TopRated from "../components/home/TopRated";
-import NewArrivals from "../components/home/NewArrivals";
 import Features from "../components/home/Features";
 import Footer from "../components/Footer";
 
